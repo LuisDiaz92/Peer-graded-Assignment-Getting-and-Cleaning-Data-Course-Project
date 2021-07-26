@@ -1,9 +1,8 @@
----
-title: "Readme"
-author: "Luis Rodrigo Diaz Pavez"
-date: "2021 M07 26"
-output: md_document
----
+
+## Readme
+### Luis Rodrigo Diaz Pavez
+### 26/07/2021
+
 
 ## Peer-graded Assignment: Getting and Cleaning Data Course Project
 This repository contains the submission of the peer-graded assignment for the course "Getting and Cleaning Data Course Project" of Coursera. The used dataset contains Human Activity Recognition data coming from Smartphones.
