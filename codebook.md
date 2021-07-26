@@ -1,5 +1,5 @@
 
-## Codebook Assignment: Getting and Cleaning Data
+## Codebook Assignment: Getting and Cleaning Data Course Project
 ### Author: Luis Rodrigo Diaz Pavez
 ### Date: 26/07/2021
 
