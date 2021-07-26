@@ -1,10 +1,6 @@
----
-title: "Codebook Assignment - Cleaning and getting data"
-author: "Luis Rodrigo Diaz Pavez"
-date: "26/07/2021"
-output: html_document
----
-
+## Codebook Assignment: Cleaning and getting data
+## Author: Luis Rodrigo Francisco Diaz Pavez
+## Date: 26/07/2021
 This document contains the codebook of the peer reviewed assigment for the course "Cleaning and getting data" of Coursera.
 
 ## Identifiers
