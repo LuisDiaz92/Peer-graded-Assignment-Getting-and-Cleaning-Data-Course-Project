@@ -56,7 +56,7 @@ Activity_names <- merge(Mean_Std, activityLabels,
                               all.x=TRUE)
 
 #######4) Appropriately labels the data set with descriptive variable names####### 
-#Already done
+#Already done in the previous steps
 
 #######5) From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject#######
 #a) Second tidy data set
