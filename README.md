@@ -1,7 +1,7 @@
 
 ## Readme
-### Luis Rodrigo Diaz Pavez
-### 26/07/2021
+### Author: Luis Rodrigo Diaz Pavez
+### Date: 26/07/2021
 
 
 ## Peer-graded Assignment: Getting and Cleaning Data Course Project
