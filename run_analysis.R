@@ -1,5 +1,4 @@
-#Downloading and unzipping data into the working directory
-
+# Downloading and unzipping data into the working directory
 if(!file.exists("C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data")){dir.create("C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data")}
 fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 download.file(fileUrl,destfile="C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data/Dataset.zip")
@@ -7,34 +6,32 @@ unzip(zipfile="C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting 
 
 #######1) Merges the training and the test sets to create one data set######
 #a) Reading files
-#Training tables:
+# Training tables
 x_train <- read.table("C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data/UCI HAR Dataset/train/X_train.txt")
 y_train <- read.table("C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data/UCI HAR Dataset/train/y_train.txt")
 subject_train <- read.table("C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data/UCI HAR Dataset/train/subject_train.txt")
 
-#Testing tables:
+# Testing tables
 x_test <- read.table("C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data/UCI HAR Dataset/test/X_test.txt")
 y_test <- read.table("C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data/UCI HAR Dataset/test/y_test.txt")
 subject_test <- read.table("C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data/UCI HAR Dataset/test/subject_test.txt")
 
-#Feature vector:
+# Feature vector
 features <- read.table("C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data/UCI HAR Dataset/features.txt")
 
-#Activity labels:
+# Activity labels
 activityLabels = read.table("C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data/UCI HAR Dataset/activity_labels.txt")
 
 #b) Column names
 colnames(x_train) <- features[,2]
 colnames(y_train) <-"activity_id"
 colnames(subject_train) <- "subject_id"
-
 colnames(x_test) <- features[,2] 
 colnames(y_test) <- "activity_id"
 colnames(subject_test) <- "subject_id"
-
 colnames(activityLabels) <- c('activity_id','activityType')
 
-#c) Merging data in one database:
+#c) Merging data in one database
 merge_train <- cbind(y_train, subject_train, x_train)
 merge_test <- cbind(y_test, subject_test, x_test)
 merged_database <- rbind(merge_train, merge_test)
