@@ -1,7 +1,7 @@
 
 ## Codebook Assignment: Cleaning and getting data
-### Luis Rodrigo Diaz Pavez
-### 26/07/2021
+### Author: Luis Rodrigo Diaz Pavez
+### Date: 26/07/2021
 
 This document contains the codebook of the peer reviewed assigment for the course "Cleaning and getting data" of Coursera.
 
