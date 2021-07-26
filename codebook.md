@@ -1,6 +1,8 @@
 ## Codebook Assignment: Cleaning and getting data
-## Author: Luis Rodrigo Francisco Diaz Pavez
-## Date: 26/07/2021
+Author: Luis Rodrigo Francisco Diaz Pavez
+
+Date: 26/07/2021
+
 This document contains the codebook of the peer reviewed assigment for the course "Cleaning and getting data" of Coursera.
 
 ## Identifiers
@@ -15,7 +17,7 @@ merge_train, merge_test and merged_database merge the previous datasets to furth
 
 features contains the correct names of the variables, which are applied to the column names.
 
-## Measurements
+## Variables
 "TimeBodyAcceleratorMeanX"                    
 "TimeBodyAcceleratorMeanY"                     
 "TimeBodyAcceleratorMeanZ"                      
