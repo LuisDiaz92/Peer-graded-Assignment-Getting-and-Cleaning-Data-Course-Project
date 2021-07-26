@@ -1,16 +1,13 @@
-#Downloading data
-if(!file.exists("C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data")){dir.create("C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data")}
+#Downloading and unzipping data into the working directory
 
-#Data for the project:
+if(!file.exists("C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data")){dir.create("C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data")}
 fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 download.file(fileUrl,destfile="C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data/Dataset.zip")
-
-#Unzip dataSet to directory
 unzip(zipfile="C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data/Dataset.zip",exdir="C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data")
 
 #######1) Merges the training and the test sets to create one data set######
 #a) Reading files
-#Trainings tables:
+#Training tables:
 x_train <- read.table("C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data/UCI HAR Dataset/train/X_train.txt")
 y_train <- read.table("C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data/UCI HAR Dataset/train/y_train.txt")
 subject_train <- read.table("C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data/UCI HAR Dataset/train/subject_train.txt")
@@ -42,7 +39,7 @@ merge_train <- cbind(y_train, subject_train, x_train)
 merge_test <- cbind(y_test, subject_test, x_test)
 merged_database <- rbind(merge_train, merge_test)
 
-#######2)Extracts only the measurements on the mean and standard deviation for each measurement#######
+#######2) Extracts only the measurements on the mean and standard deviation for each measurement#######
 #a) Column names
 colNames <- colnames(merged_database)
 
@@ -56,57 +53,25 @@ id_mean_std <- (grepl("activity_id" , colNames) |
 #c) Subset
 Mean_Std <- merged_database[ , id_mean_std == TRUE]
 
-#Uses descriptive activity names to name the activities in the data set
-
-#Appropriately labels the data set with descriptive variable names. 
-
-#From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
-
-
-
-#******************************************************************
-#Step 2.-Extracts only the measurements on the mean and standard deviation for each measurement.
-#******************************************************************
-
-#2.1 Reading column names:
-
-colNames <- colnames(setAllInOne)
-
-#2.2 Create vector for defining ID, mean and standard deviation:
-
-mean_and_std <- (grepl("activityId" , colNames) | 
-                   grepl("subjectId" , colNames) | 
-                   grepl("mean.." , colNames) | 
-                   grepl("std.." , colNames) 
-)
-
-#2.3 Making nessesary subset from setAllInOne:
-
-setForMeanAndStd <- setAllInOne[ , mean_and_std == TRUE]
-
-#******************************************************************
-#Step 3. Uses descriptive activity names to name the activities in the data set
-#******************************************************************
-
-setWithActivityNames <- merge(setForMeanAndStd, activityLabels,
-                              by='activityId',
+#######3) Uses descriptive activity names to name the activities in the data set#######
+Activity_names <- merge(Mean_Std, activityLabels,
+                              by='activity_id',
                               all.x=TRUE)
 
-#******************************************************************
-#Step 4. Appropriately labels the data set with descriptive variable names.
-#******************************************************************
+#######4) Appropriately labels the data set with descriptive variable names####### 
+#Already done
 
-#Done in previous steps, see 1.3,2.2 and 2.3!
+#######5) From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject#######
+#a) Second tidy data set
+install.packages("dplyr") 
+library(dplyr)
+second_tidySet <- Activity_names %>% 
+group_by(subject_id, activity_id) %>% 
+summarise_each(funs(mean))
 
-#******************************************************************
-#Step 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
-#******************************************************************
+#b) Second tidy data set in txt file
+write.table(second_tidySet, "C:/Users/Luis/Desktop/R/R course/Assignment_Cleaning and getting data/Data/Final_tidyset.txt", row.name=FALSE)
 
-#5.1 Making a second tidy data set
 
-secTidySet <- aggregate(. ~subjectId + activityId, setWithActivityNames, mean)
-secTidySet <- secTidySet[order(secTidySet$subjectId, secTidySet$activityId),]
 
-#5.2 Writing second tidy data set in txt file
 
-write.table(secTidySet, "secTidySet.txt", row.name=FALSE)
